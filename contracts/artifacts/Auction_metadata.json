@@ -16,19 +16,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "auctionIsRunning",
-				"outputs": [
-					{
-						"internalType": "enum Auction.State",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "auctionStatus",
 				"outputs": [
 					{
@@ -81,25 +68,12 @@
 			},
 			{
 				"inputs": [],
-				"name": "getHighestBidder",
+				"name": "getAuctionState",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "enum Auction.State",
 						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getHighestBindingBid",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -197,11 +171,11 @@
 	},
 	"sources": {
 		"contracts/auction.sol": {
-			"keccak256": "0xeb131d1c4eafca5ba8f531ea86076f44b66720d58454f939e070ce4d3c3817a2",
+			"keccak256": "0xfc571fe4ac2d039d5d2bd293486181b70c8626660f1260c2522085a2d16c7c53",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://8f6b13f688815ee2878ebd134b177bd6ea58f1d584228cf5f57006ec8fe5fd42",
-				"dweb:/ipfs/QmSgc7XUQYUFqa1UQNT8Dy3RZ17aWoN7BMoMe1Dx9kGSHP"
+				"bzz-raw://9c9b62437a10becfe1c5a123a47948072d093f45cbd63dd3673d9135a8fa43ee",
+				"dweb:/ipfs/QmToKkDttffDexdLrcWvdP7ZryfQcce6eQUn4DK5ufdTP7"
 			]
 		}
 	},

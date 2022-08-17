@@ -28,9 +28,22 @@ contract Auction{
         _;
     }
 
-    receive() external payable{
-        require(auctionIsOpen() == State.RUNNING);
+    modifier notOwner(){
         require(msg.sender != owner);
+        _;
+    }
+
+    modifier auctionRunning(){
+        require(auctionIsRunning() == State.RUNNING);
+        _;
+    }
+
+    modifier auctionNotRunning(){
+        require(auctionIsRunning() != State.RUNNING);
+        _;
+    }
+
+    receive() external payable notOwner auctionRunning {
         addBid(msg.sender, msg.value);
     }
 
@@ -42,8 +55,8 @@ contract Auction{
         //add new address or add increment bid to mapping
     }
 
-    //auction is open and bidders can add bids
-    function auctionIsOpen() public view returns(State){
+    //auction is running and bidders can add bids
+    function auctionIsRunning() public view returns(State){
         return auctionStatus;
     }
 
@@ -56,9 +69,7 @@ contract Auction{
 
     }
 
-    function startAuction() public onlyOwner {
-        require(auctionIsOpen() != State.RUNNING);
-
+    function startAuction() public onlyOwner auctionNotRunning {
         auctionStatus = State.RUNNING;
 
         startBlock = block.number;
@@ -68,9 +79,7 @@ contract Auction{
         //clear bids
     }
 
-    function endAuction() public onlyOwner {
-        require(auctionIsOpen() == State.RUNNING);
-        
+    function endAuction() public onlyOwner auctionRunning {        
         auctionStatus = State.ENDED;
 
         //get Highest Bidder

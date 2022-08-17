@@ -23,6 +23,11 @@ contract Auction{
         startAuction();
     }
 
+    modifier onlyOwner(){
+        require(msg.sender == owner);
+        _;
+    }
+
     receive() external payable{
         require(auctionIsOpen() == State.RUNNING);
         require(msg.sender != owner);
@@ -51,8 +56,7 @@ contract Auction{
 
     }
 
-    function startAuction() public {
-        require(msg.sender == owner);
+    function startAuction() public onlyOwner {
         require(auctionIsOpen() != State.RUNNING);
 
         auctionStatus = State.RUNNING;
@@ -64,8 +68,7 @@ contract Auction{
         //clear bids
     }
 
-    function endAuction() public{
-        require(msg.sender == owner);
+    function endAuction() public onlyOwner {
         require(auctionIsOpen() == State.RUNNING);
         
         auctionStatus = State.ENDED;

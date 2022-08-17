@@ -197,11 +197,11 @@
 	},
 	"sources": {
 		"contracts/auction.sol": {
-			"keccak256": "0xb728765b57b9c1c7fb495286b99acc5bad48934cbe225ff26bf7512decd57141",
+			"keccak256": "0x5772b9e8919a7d40a5c293e2c7bd6236a20ed42b167e8c175b28f76919154ff2",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://2e90c9f7b516da6306d8ca5b3957dbf77f4f44014f098261b5113e7f987cabc2",
-				"dweb:/ipfs/QmRUsubJvpC8jHjbxta7EhLvEH4ijrtnD5LrjPY3qaKFBg"
+				"bzz-raw://f2835d65475486f85222b1c221007f48551406f2afb05e3cc8ebba0c98f8ed92",
+				"dweb:/ipfs/QmbasSPy2UygTZCugfnyqHhzfwm9B25g8xhfVexAUaePsW"
 			]
 		}
 	},

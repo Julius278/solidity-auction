@@ -5,8 +5,8 @@ pragma solidity >=0.6.0 <0.9.0;
 contract Auction{
 
     address payable public owner;
-    enum State {RUNNING, ENDED, CANCLED}
-    State public auctionStatus;
+    enum State {RUNNING, ENDED, CANCELED}
+    State private auctionStatus;
 
     uint public highestBindingBid;
     address payable public highestBidder;
@@ -48,7 +48,7 @@ contract Auction{
         revert();
     }
 
-    function placeBid() internal notOwner afterStart beforeEnd{
+    function placeBid() public payable notOwner afterStart beforeEnd{
         require(getAuctionState() == State.RUNNING);
         require(msg.value >= bidIncrement);
 
@@ -76,7 +76,8 @@ contract Auction{
         return auctionStatus;
     }
 
-    function startAuction() public onlyOwner afterStart beforeEnd {
+
+    function startAuction() private onlyOwner {
         auctionStatus = State.RUNNING;
 
         startBlock = block.number;
@@ -85,16 +86,38 @@ contract Auction{
         //clear bids
     }
 
-    function endAuction() public onlyOwner afterStart beforeEnd {        
+    function finalizeAuction() public afterStart {        
+        require(auctionStatus == State.CANCELED || block.number > endBlock);
+        require(msg.sender == owner || bids[msg.sender] > 0);
+        
         auctionStatus = State.ENDED;
+        address payable recipient;
+        uint value;
 
-        //get Highest Bidder
-        //withdraw highest bid to owner
-        //withdraw open funds to bidders
-        //clear bids
-        //clear highestBindingBid
-        highestBindingBid = 0;
-        //clear highestBidder
-        highestBidder= payable(address(0));
+        if(auctionStatus == State.CANCELED){
+            recipient = payable(msg.sender);
+            value = bids[msg.sender];
+        }else {
+            if(msg.sender == owner){
+                recipient = owner;
+                value = highestBindingBid;
+            } else if(msg.sender == highestBidder){
+                recipient = highestBidder;
+                value = bids[highestBidder] - highestBindingBid;
+            } else {
+                recipient = payable(msg.sender);
+                value = bids[msg.sender];
+            }
+        }
+
+        //resets the bid of the recipient
+        bids[recipient] = 0;
+
+        //send value to the recipient
+        recipient.transfer(value);
+    }
+
+    function cancelAuction() public onlyOwner {
+        auctionStatus = State.CANCELED;
     }
 }

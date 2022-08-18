@@ -15,19 +15,6 @@
 				"type": "fallback"
 			},
 			{
-				"inputs": [],
-				"name": "auctionStatus",
-				"outputs": [
-					{
-						"internalType": "enum Auction.State",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -48,7 +35,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "endAuction",
+				"name": "cancelAuction",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -64,6 +51,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "finalizeAuction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -120,9 +114,9 @@
 			},
 			{
 				"inputs": [],
-				"name": "startAuction",
+				"name": "placeBid",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -171,11 +165,11 @@
 	},
 	"sources": {
 		"contracts/auction.sol": {
-			"keccak256": "0xfc571fe4ac2d039d5d2bd293486181b70c8626660f1260c2522085a2d16c7c53",
+			"keccak256": "0x6d6d51f1d73aa9e56b6c7566edae0a7662a4816d045e425110b25b14c5494ec5",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://9c9b62437a10becfe1c5a123a47948072d093f45cbd63dd3673d9135a8fa43ee",
-				"dweb:/ipfs/QmToKkDttffDexdLrcWvdP7ZryfQcce6eQUn4DK5ufdTP7"
+				"bzz-raw://45c9f07b658995fab650ee058cc2875dcdfbf658139229fbda3c985ab663b431",
+				"dweb:/ipfs/QmNTpTzdN6D7sS57vQouRafXLC4ZdNd1hncoavTXNmBaQm"
 			]
 		}
 	},

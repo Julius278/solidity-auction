@@ -6,14 +6,29 @@ contract AuctionCreator{
 
     address public owner;
     Auction[] public auctions;
+    bool public newAuctionsAllowed;
 
     constructor(){
         owner = msg.sender;
     }
 
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
+
     function createNewAuction() public {
+        require(newAuctionsAllowed == true);
         Auction newAuction = new Auction(msg.sender);
         auctions.push(newAuction);
+    }
+
+    function allowNewAuctions() public onlyOwner{
+        newAuctionsAllowed = true;
+    }
+
+    function preventNewAuctions() public onlyOwner {
+        newAuctionsAllowed = false;
     }
 }
 

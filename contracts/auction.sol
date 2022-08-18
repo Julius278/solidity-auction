@@ -2,6 +2,21 @@
 
 pragma solidity >=0.6.0 <0.9.0;
 
+contract AuctionCreator{
+
+    address public owner;
+    Auction[] public auctions;
+
+    constructor(){
+        owner = msg.sender;
+    }
+
+    function createNewAuction() public {
+        Auction newAuction = new Auction(msg.sender);
+        auctions.push(newAuction);
+    }
+}
+
 contract Auction{
 
     address payable public owner;
@@ -19,8 +34,8 @@ contract Auction{
     uint public startBlock;
     uint public endBlock;
 
-    constructor(){
-        owner = payable(msg.sender);
+    constructor(address eoa){
+        owner = payable(eoa);
         startAuction();
     }
 

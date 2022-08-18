@@ -114,6 +114,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "ownerFinalized",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "placeBid",
 				"outputs": [],
 				"stateMutability": "payable",
@@ -165,11 +178,11 @@
 	},
 	"sources": {
 		"contracts/auction.sol": {
-			"keccak256": "0x6d6d51f1d73aa9e56b6c7566edae0a7662a4816d045e425110b25b14c5494ec5",
+			"keccak256": "0xa646633df362cedc78bea6795768deac894ba497c96511160eebf7946b10c8e7",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://45c9f07b658995fab650ee058cc2875dcdfbf658139229fbda3c985ab663b431",
-				"dweb:/ipfs/QmNTpTzdN6D7sS57vQouRafXLC4ZdNd1hncoavTXNmBaQm"
+				"bzz-raw://5eeb137eb90bf43b26d45cfa4170501bef9a16c89e9c4844aa8518341bd28a7d",
+				"dweb:/ipfs/QmNW9p6gkocUgNhTevGJpinC4zqUBjW6dzpkRUurcpfPJu"
 			]
 		}
 	},

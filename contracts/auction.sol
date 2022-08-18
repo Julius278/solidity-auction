@@ -7,6 +7,7 @@ contract Auction{
     address payable public owner;
     enum State {RUNNING, ENDED, CANCELED}
     State private auctionStatus;
+    bool public ownerFinalized;
 
     uint public highestBindingBid;
     address payable public highestBidder;
@@ -98,9 +99,10 @@ contract Auction{
             recipient = payable(msg.sender);
             value = bids[msg.sender];
         }else {
-            if(msg.sender == owner){
+            if(msg.sender == owner && ownerFinalized == false){
                 recipient = owner;
                 value = highestBindingBid;
+                ownerFinalized = true;
             } else if(msg.sender == highestBidder){
                 recipient = highestBidder;
                 value = bids[highestBidder] - highestBindingBid;
